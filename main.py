@@ -22,11 +22,11 @@ def main():
             for item in sp:
                 if item in text:
                     vk.messages.send(user_id=event.obj.message['from_id'],
-                                     message=f"""Привет!
+                                     message=f"""Привет!🙌
 Вот что я умею:
 - игра
 - трек
-- и тп""",
+- картинка""",
                                      random_id=random.randint(0, 2 ** 64))
                     flag = 1
                     break
@@ -60,6 +60,11 @@ def main():
                 if 'трек' in text:
                     vk.messages.send(user_id=event.obj.message['from_id'],
                                      message=f"песня",
+                                     random_id=random.randint(0, 2 ** 64))
+                    flag = 1
+                if 'картинка' in text:
+                    vk.messages.send(user_id=event.obj.message['from_id'],
+                                     message=f"Лови топ пикчу!",
                                      random_id=random.randint(0, 2 ** 64))
                     flag = 1
 
