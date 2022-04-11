@@ -62,13 +62,20 @@ def main():
                                      message=f"песня",
                                      random_id=random.randint(0, 2 ** 64))
                     flag = 1
+                    break
                 if 'картинка' in text:
-                    attacment = f'photo{owner_id}_{photo_id}_{access_key}'
+                    upload = vk_api.VkUpload(vk)
+                    photo = upload.photo_messages('1.jpg')
+                    owner_id = photo[0]['owner_id']
+                    photo_id = photo[0]['id']
+                    access_key = photo[0]['access_key']
+                    attachment = f'photo{owner_id}_{photo_id}_{access_key}'
                     vk.messages.send(user_id=event.obj.message['from_id'],
                                      message=f"Лови топ пикчу!",
-                                     attacment='photo-193462541',
+                                     attachment=attachment,
                                      random_id=random.randint(0, 2 ** 64))
                     flag = 1
+                    break
             if flag == 0:
                 vk.messages.send(user_id=event.obj.message['from_id'],
                                  message=f"Напишите '""начать""'",
