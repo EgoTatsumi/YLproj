@@ -4,7 +4,7 @@ import pytz
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import random
 TOKEN = '7626cc706d445b332615f283f17a6eb3de8a8c9d3276f2772e7626dec920c43fb29dfb28b7baa0d1edcfa'
-sp = ["начать"]
+sp = ["начать", 'давай', 'да']
 moscow_time = str(datetime.now(pytz.timezone('Europe/Moscow'))).split()[0]
 week = datetime.now().strftime('%a')
 
@@ -63,11 +63,12 @@ def main():
                                      random_id=random.randint(0, 2 ** 64))
                     flag = 1
                 if 'картинка' in text:
+                    attacment = f'photo{owner_id}_{photo_id}_{access_key}'
                     vk.messages.send(user_id=event.obj.message['from_id'],
                                      message=f"Лови топ пикчу!",
+                                     attacment='photo-193462541',
                                      random_id=random.randint(0, 2 ** 64))
                     flag = 1
-
             if flag == 0:
                 vk.messages.send(user_id=event.obj.message['from_id'],
                                  message=f"Напишите '""начать""'",
